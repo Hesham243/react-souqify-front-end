@@ -1,5 +1,5 @@
-
-import React from 'react';
-
+const ItemList = (props) => {
+  return <main>Item list</main>
+}
 
 export default ItemList;
