@@ -5,6 +5,7 @@ import SignIn from './components/SignIn/SignIn'
 import StoreForm from './components/StoreForm/StoreForm'
 import StoreList from './components/StoreList/StoreList'
 import StoreDetails from './components/StoreDetails/StoreDetails.jsx'
+import ItemDetails from './components/ItemDetails/ItemDetails.jsx'
 import { Route, Routes } from 'react-router-dom'
 import * as authService from './services/authService.js'
 import { useState, useEffect } from 'react'
@@ -70,7 +71,8 @@ const App = () => {
         {/* Public Routes */}
         <Route path='/' element={<h1>Hello world!</h1>} />
         <Route path='/stores' element={<StoreList stores={stores} />} />
-        <Route path='/stores/:storeId' element={<StoreDetails />} />   
+        <Route path='/stores/:storeId' element={<StoreDetails />} /> 
+        <Route path='/stores/:storeId/items/:itemId' element={<ItemDetails />} />
         {user ? (
           <>
             {/* Protected Routes - only for authenticated users */}
