@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import * as storeService from '../../services/storeServices.js'
+import ItemList from '../ItemList/ItemList'
 
-const StoreDetails = () => {
+const StoreDetails = ({ user }) => {
   const { storeId } = useParams()
   const [store, setStore] = useState(null)
 
@@ -23,6 +24,7 @@ const StoreDetails = () => {
         <img src={store.logo} alt={`${store.name} logo`} />
       )}
       <p><strong>Category:</strong> {store.category}</p>
+      <ItemList user={user} />
     </main>
   )
 }
