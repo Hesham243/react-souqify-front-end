@@ -1,12 +1,44 @@
-# React + Vite
+# 🛍️ Souqify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Game Screenshot](./assets/screenshot.png)
 
-Currently, two official plugins are available:
+## 🕹️ Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Souqify** is a marketplace web application where users can create their own stores, add products, and interact with other sellers. Each store can have multiple items, and any signed-in user can leave reviews on items.  
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👉 **Play it here:** [https://your-deployment-link.com](https://your-deployment-link.com)
+
+👉 **Planning Materials:**
+- [User Stories](https://trello.com/b/RacBmZJ6/unite-3-project)
+
+👉 **Back-End Repository:** [https://github.com/Hesham243/express-api-souqify-back-end.git](https://github.com/Hesham243/express-api-souqify-back-end.git)
+
+
+### How to Play
+1. **Sign up** or **Sign in** to your account.
+2. Create one or more stores.
+3. Add items to your store with descriptions, prices, and images.
+4. Browse other users’ stores and view their items.
+5. Click on an item to see details and read comments.
+6. Leave a comment on any item if you are signed in.
+
+## 💡 Technologies Used
+
+- **Frontend:** React, React Router
+- **Backend:** Node.js, Express
+- **Database:** MongoDB + Mongoose
+- **Authentication:** JWT
+- **Styling:** CSS / Bootstrap
+
+## 📚 Attributions
+
+- [Icons from Font Awesome](https://fontawesome.com/)
+
+## 🚧 Next Steps
+
+- Implement checkout and payment flow
+- Add search and filtering functionality
+- Enable product image uploads
+- Add user profile page
