@@ -7,13 +7,15 @@ import * as itemService from '../../services/itemService.js'
 const ItemDetails = ({ user }) => {
     const { storeId, itemId } = useParams()
     const [item, setItem] = useState(null)
+    const [storeOwner, setStoreOwner] = useState(null)
     const navigate = useNavigate()
     const [deleting, setDeleting] = useState(false)
-
 
     useEffect(() => {
         const fetchItem = async () => {
             const storeData = await storeService.show(storeId)
+            const storeOwner = storeData.owner
+            setStoreOwner(storeOwner)
             const foundItem = storeData.items.find(item => item._id === itemId)
             setItem(foundItem)
         }
@@ -45,7 +47,7 @@ const ItemDetails = ({ user }) => {
             <p><strong>Price:</strong> ${item.price}</p>
             <p><strong>Description:</strong> {item.description}</p>
 
-            {user && (
+            {user && storeOwner && user._id === storeOwner._id && (
                 <div style={{ marginTop: '1rem' }}>
                     <button onClick={handleEdit} style={{ marginRight: '0.5rem' }}>Edit</button>
                     <button onClick={handleDelete} style={{ color: 'red' }} disabled={deleting}>
@@ -62,7 +64,7 @@ const ItemDetails = ({ user }) => {
                 {item.reviews.map((review) => (
                     <>
                         <li key={review._id}>
-                           <p><strong>Author: </strong>{user.username}</p>
+                           <p><strong>Author: </strong>{review.author.username}</p>
                            <strong>Rating:</strong> {review.rating} ★<br />
                            <p><strong>Review: </strong>{review.text}</p>
                         </li>
