@@ -9,6 +9,7 @@ import StoreDetails from './components/StoreDetails/StoreDetails.jsx'
 import ItemForm from './components/ItemForm/ItemForm.jsx'
 import ItemList from './components/ItemList/ItemList.jsx'
 import ItemDetails from './components/ItemDetails/ItemDetails.jsx'
+import Landing from './components/Landing/Landing.jsx'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import * as authService from './services/authService.js'
 import { useState, useEffect } from 'react'
@@ -86,7 +87,7 @@ const App = () => {
       <NavBar user={user} handleSignOut={handleSignOut} />
       <Routes>
         {/* Public Routes */}
-        <Route path='/' element={<h1>Hello world!</h1>} />
+        <Route path='/' element={<Landing />} />
         <Route path='/stores' element={<StoreList stores={stores} />} />
         <Route path='/stores/:storeId' element={<StoreDetails user={user} handleDeleteStore={handleDeleteStore} />} />
         <Route path='/stores/:storeId/items' element={<ItemList user={user} />} />
