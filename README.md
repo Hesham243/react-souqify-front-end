@@ -4,7 +4,9 @@
 
 ## 🕹️ Description
 
-**Souqify** is a marketplace web application where users can create their own stores, add products, and interact with other sellers. Each store can have multiple items, and any signed-in user can leave reviews on items.  
+**Souqify** is a marketplace web application where users can create their own stores, add products, and interact with other sellers.  
+Each store can have multiple items, and any signed-in user can leave reviews on items.  
+We built Souqify to provide a collaborative, community-driven online shopping experience. 
 
 ## 🚀 Getting Started
 
