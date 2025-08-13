@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as itemService from '../../services/itemService';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 const ReviewForm = ({ onReviewSubmit }) => {
 	const [review, setReview] = useState('');
@@ -27,33 +28,47 @@ const ReviewForm = ({ onReviewSubmit }) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} style={{ marginBottom: '1rem' }}>
-			<div>
-				<label htmlFor="review">Review:</label>
-				<textarea
-					id="review"
-					value={review}
-					onChange={(e) => setReview(e.target.value)}
-					required
+		<div className="mt-4">
+			<h5 style={{ color: '#ffb347', marginBottom: '1rem' }}>Add a Review</h5>
+			<Form onSubmit={handleSubmit}>
+				<Form.Group className="mb-3" controlId="formReview">
+					<Form.Label>Review</Form.Label>
+					<Form.Control
+						as="textarea"
+						rows={3}
+						value={review}
+						onChange={(e) => setReview(e.target.value)}
+						required
+						disabled={submitting}
+						placeholder="Write your review here..."
+					/>
+				</Form.Group>
+				
+				<Form.Group className="mb-3" controlId="formRating">
+					<Form.Label>Rating</Form.Label>
+					<Form.Select
+						value={rating}
+						onChange={(e) => setRating(Number(e.target.value))}
+						disabled={submitting}
+					>
+						{[1, 2, 3, 4, 5].map((num) => (
+							<option key={num} value={num}>{num} Star{num !== 1 ? 's' : ''}</option>
+						))}
+					</Form.Select>
+				</Form.Group>
+				
+				<Button 
+					variant="warning" 
+					type="submit" 
 					disabled={submitting}
-				/>
-			</div>
-			<div>
-				<label htmlFor="rating">Rating:</label>
-				<select
-					id="rating"
-					value={rating}
-					onChange={(e) => setRating(Number(e.target.value))}
-					disabled={submitting}
+					className="w-100"
 				>
-					{[1, 2, 3, 4, 5].map((num) => (
-						<option key={num} value={num}>{num}</option>
-					))}
-				</select>
-			</div>
-			<button type="submit" disabled={submitting}>{submitting ? 'Submitting...' : 'Submit Review'}</button>
-			{error && <p style={{ color: 'red' }}>{error}</p>}
-		</form>
+					{submitting ? 'Submitting...' : 'Submit Review'}
+				</Button>
+				
+				{error && <Alert variant="danger" className="mt-3">{error}</Alert>}
+			</Form>
+		</div>
 	);
 };
 

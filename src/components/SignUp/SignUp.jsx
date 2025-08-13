@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Form, Button, Container, Card, Alert } from 'react-bootstrap';
 
 const SignUp = (props) => {
   const navigate = useNavigate()
@@ -45,23 +46,29 @@ const SignUp = (props) => {
   }
 
   return (
-    <main>
-      <h1>Sign up Form</h1>
-      {/* add error message display to form */}
-      {error}
-      <form onSubmit={handleSubmit}>
-        <label>Username:</label>
-        <input type="text" name='username' onChange={handleChange} />
-        <br />
-        <label>Password:</label>
-        <input type="password" name='password' onChange={handleChange} />
-        <br />
-        <label>Confirm Password:</label>
-        <input type="password" name="passwordConf" onChange={handleChange} />
-        <br />
-        <button type="submit" disabled={formIsInvalid}>Sign up</button>
-      </form>
-    </main>
+    <Container className="d-flex justify-content-center align-items-center min-vh-100">
+      <Card bg="dark" text="light" style={{ width: '22rem' }}>
+        <Card.Body>
+          <Card.Title className="mb-4 text-center">Sign Up</Card.Title>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="text" name="username" onChange={handleChange} placeholder="Enter username" autoComplete="username" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" name="password" onChange={handleChange} placeholder="Enter password" autoComplete="new-password" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formPasswordConf">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control type="password" name="passwordConf" onChange={handleChange} placeholder="Confirm password" autoComplete="new-password" />
+            </Form.Group>
+            <Button variant="primary" type="submit" className="w-100" disabled={formIsInvalid}>Sign Up</Button>
+          </Form>
+          {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
+        </Card.Body>
+      </Card>
+    </Container>
   )
 }
 

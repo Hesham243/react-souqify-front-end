@@ -1,42 +1,38 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
+body {
+	background-color: #181a1b;
+	color: #f8f9fa;
+	font-family: 'Montserrat', Arial, sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.navbar {
+	font-family: 'Montserrat', Arial, sans-serif;
+	background: linear-gradient(90deg, #232526 0%, #414345 100%);
+	box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar-brand {
+	color: #ffb347 !important;
+	font-weight: 700;
+	letter-spacing: 1px;
+	font-size: 1.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.navbar-text {
+	color: #ffb347 !important;
+	font-weight: 500;
 }
 
-.card {
-  padding: 2em;
+.nav-link {
+	color: #f8f9fa !important;
+	font-weight: 500;
+	transition: color 0.2s;
 }
-
-.read-the-docs {
-  color: #888;
+.nav-link:hover, .nav-link.active {
+	color: #ffb347 !important;
+}
+body {
+	background-color: #181a1b;
+	color: #f8f9fa;
 }
