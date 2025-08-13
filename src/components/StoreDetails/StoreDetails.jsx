@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import * as storeService from '../../services/storeServices.js'
 import ItemList from '../ItemList/ItemList'
 
-const StoreDetails = ({ user }) => {
+const StoreDetails = ({ user, handleDeleteStore }) => {
   const { storeId } = useParams()
   const [store, setStore] = useState(null)
-  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchStore = async () => {
@@ -15,15 +14,6 @@ const StoreDetails = ({ user }) => {
     }
     fetchStore()
   }, [storeId])
-
-  const handleDeleteStore = async (storeId) => {
-    try {
-      await storeService.deleteStore(storeId)
-      navigate('/stores')
-    } catch (error) {
-      console.error('Error deleting store:', error)
-    }
-  }
 
   if (!store) return <h2>Loading...</h2>
 
