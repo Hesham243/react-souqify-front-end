@@ -23,6 +23,7 @@ const StoreDetails = ({ user }) => {
       {store.logo && (
         <img src={store.logo} alt={`${store.name} logo`} />
       )}
+      <p><strong>Owner: </strong> {store.owner.username}</p>
       <p><strong>Category:</strong> {store.category}</p>
       <Link to={`/stores/${storeId}/edit`} >Edit</Link>
       <hr />
