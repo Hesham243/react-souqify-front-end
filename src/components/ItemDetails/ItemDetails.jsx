@@ -70,7 +70,9 @@ const ItemDetails = ({ user }) => {
                 ))}
                 </ul>
                 ): (<p>No reviews yet.</p>)}
-                <ReviewForm onReviewSubmit={fetchItem} />
+                {user && (
+                    <ReviewForm onReviewSubmit={fetchItem} />
+                )}
             </section>
         </main>
     )
