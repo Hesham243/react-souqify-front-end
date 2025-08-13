@@ -8,13 +8,15 @@ import StoreDetails from './components/StoreDetails/StoreDetails.jsx'
 import ItemForm from './components/ItemForm/ItemForm.jsx'
 import ItemList from './components/ItemList/ItemList.jsx'
 import ItemDetails from './components/ItemDetails/ItemDetails.jsx'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import * as authService from './services/authService.js'
 import { useState, useEffect } from 'react'
 
 import * as storeService from './services/storeServices.js'
 
 const App = () => {
+
+  const navigate = useNavigate()
 
   const initialState = authService.getUser()
 
@@ -56,6 +58,7 @@ const App = () => {
   const handleAddStore = async (formData)=>{
     const newStore = await storeService.create(formData)
     setStores([...stores, newStore])
+    navigate('/stores')
   }
 
   const handleUpdateStore = async (formData, storeId)=>{
@@ -64,6 +67,7 @@ const App = () => {
     const newStores = [...stores]
     newStores[storeIndex] = updatedStore
     setStores(newStores)
+    navigate(`/stores/${storeId}`)
   }
 
   return (
