@@ -59,6 +59,7 @@ const StoreForm = (props) => {
           value={formData.logo}
           onChange={handleChange}
           placeholder="https://example.com/logo.png"
+          required
         />
       </div>
 
