@@ -3,22 +3,20 @@ import { useParams, useNavigate } from 'react-router-dom'
 import * as itemService from '../../services/itemService.js'
 
 
-const ItemList = ({ user }) => {
+const ItemList = ({ user, storeOwner }) => {
 	const { storeId } = useParams()
 	const [items, setItems] = useState([])
 	const navigate = useNavigate()
-
 
 	useEffect(() => {
 		itemService.index(storeId).then(data => setItems(data || []))
 	}, [storeId])
 
-
 	return (
 		<main>
 			<h1>Item List</h1>
 
-			{user && (
+			{user && storeOwner && user._id === storeOwner._id && (
 				<button onClick={() => navigate(`/stores/${storeId}/items/new`)}>Add New Item</button>
 			)}
 
