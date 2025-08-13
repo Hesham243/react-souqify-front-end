@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 const StoreList = (props) => {
+
   return(
     <main>
       <h1>Store List</h1>
