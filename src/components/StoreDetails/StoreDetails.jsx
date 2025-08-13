@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import * as storeService from '../../services/storeServices.js'
 import ItemList from '../ItemList/ItemList'
 
@@ -24,6 +24,8 @@ const StoreDetails = ({ user }) => {
         <img src={store.logo} alt={`${store.name} logo`} />
       )}
       <p><strong>Category:</strong> {store.category}</p>
+      <Link to={`/stores/${storeId}/edit`} >Edit</Link>
+      <hr />
       <ItemList user={user} />
     </main>
   )
