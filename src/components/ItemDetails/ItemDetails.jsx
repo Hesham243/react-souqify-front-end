@@ -53,7 +53,25 @@ const ItemDetails = ({ user }) => {
                     </button>
                 </div>
             )}
-            
+
+            <hr />
+            <section>
+                <h2>Reviews</h2>
+                {item.reviews?.length ? (
+                <ul>
+                {item.reviews.map((review) => (
+                    <>
+                        <li key={review._id}>
+                           <p><strong>Author: </strong>{user.username}</p>
+                           <strong>Rating:</strong> {review.rating} ★<br />
+                           <p><strong>Review: </strong>{review.text}</p>
+                        </li>
+                        <hr />
+                    </>
+                ))}
+                </ul>
+                ): (<p>No reviews yet.</p>)}
+            </section>
         </main>
     )
 }
