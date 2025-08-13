@@ -7,16 +7,14 @@ import * as itemService from '../../services/itemService.js'
 const ItemDetails = ({ user }) => {
     const { storeId, itemId } = useParams()
     const [item, setItem] = useState(null)
-    const [storeOwner, setStoreOwner] = useState(null)
     const navigate = useNavigate()
     const [deleting, setDeleting] = useState(false)
 
     useEffect(() => {
         const fetchItem = async () => {
             const storeData = await storeService.show(storeId)
-            const storeOwner = storeData.owner
-            setStoreOwner(storeOwner)
             const foundItem = storeData.items.find(item => item._id === itemId)
+            foundItem.owner = storeData.owner
             setItem(foundItem)
         }
         fetchItem()
@@ -47,7 +45,7 @@ const ItemDetails = ({ user }) => {
             <p><strong>Price:</strong> ${item.price}</p>
             <p><strong>Description:</strong> {item.description}</p>
 
-            {user && storeOwner && user._id === storeOwner._id && (
+            {user && user._id === item.owner._id && (
                 <div style={{ marginTop: '1rem' }}>
                     <button onClick={handleEdit} style={{ marginRight: '0.5rem' }}>Edit</button>
                     <button onClick={handleDelete} style={{ color: 'red' }} disabled={deleting}>
