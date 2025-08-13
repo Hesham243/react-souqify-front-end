@@ -15,6 +15,7 @@ const StoreList = (props) => {
             />
           ) : null}
           <h3>{store.name}</h3>
+          <p><strong>Owner: </strong> {store.owner.username}</p>
           <p><strong>Category:</strong> {store.category}</p>
           </Link>
         </div>
