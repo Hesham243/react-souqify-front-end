@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import * as itemService from '../../services/itemService.js'
+import { Form, Button, Container, Card } from 'react-bootstrap'
 
 const categories = [
 	'smartphones',
@@ -57,68 +58,82 @@ const ItemForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="item-form">
+    <Container className="d-flex justify-content-center align-items-center min-vh-100">
+      <Card bg="dark" text="light" style={{ width: '28rem' }}>
+        <Card.Body>
+          <Card.Title className="mb-4 text-center">{itemId ? 'Edit Item' : 'Add New Item'}</Card.Title>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formName">
+              <Form.Label>Name *</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                required
+                placeholder="Enter item name"
+              />
+            </Form.Group>
 
-      <h2>{itemId ? 'Edit Item' : 'Add New Item'}</h2>
+            <Form.Group className="mb-3" controlId="formDescription">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="description"
+                value={form.description}
+                onChange={handleChange}
+                placeholder="Enter item description"
+              />
+            </Form.Group>
 
-      <label>
-        Name*:
-        <input 
-          name="name" 
-          value={form.name} 
-          onChange={handleChange} 
-          required 
-        />
-      </label>
+            <Form.Group className="mb-3" controlId="formPrice">
+              <Form.Label>Price *</Form.Label>
+              <Form.Control
+                type="number"
+                min="0"
+                step="0.01"
+                name="price"
+                value={form.price}
+                onChange={handleChange}
+                required
+                placeholder="Enter price"
+              />
+            </Form.Group>
 
-      <label>
-        Description:
-        <textarea 
-          name="description" 
-          value={form.description} 
-          onChange={handleChange} 
-        />
-      </label>
+            <Form.Group className="mb-3" controlId="formImage">
+              <Form.Label>Image URL</Form.Label>
+              <Form.Control
+                type="url"
+                name="image"
+                value={form.image}
+                onChange={handleChange}
+                placeholder="https://example.com/image.jpg"
+              />
+            </Form.Group>
 
-      <label>
-        Price*:
-        <input 
-          name="price" 
-          type="number" 
-          min="0" 
-          value={form.price} 
-          onChange={handleChange} 
-          required 
-        />
-      </label>
+            <Form.Group className="mb-3" controlId="formCategory">
+              <Form.Label>Category *</Form.Label>
+              <Form.Select
+                name="category"
+                value={form.category}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select category</option>
+                {categories.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </Form.Select>
+            </Form.Group>
 
-      <label>
-        Image URL:
-        <input 
-          name="image" 
-          value={form.image} 
-          onChange={handleChange} 
-        />
-      </label>
-
-      <label>
-        Category*:
-        <select 
-          name="category" 
-          value={form.category} 
-          onChange={handleChange} 
-          required 
-        >
-          <option value="">Select category</option>
-          
-          {categories.map(cat => (
-            <option key={cat} value={cat}>{cat}</option>
-          ))}
-        </select>
-      </label>
-
-      <button type="submit">{itemId ? 'Update' : 'Create'}</button>
-    </form>
+            <Button variant="primary" type="submit" className="w-100">
+              {itemId ? 'Update Item' : 'Create Item'}
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    </Container>
   )
 }
 
