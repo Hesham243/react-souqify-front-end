@@ -14,12 +14,6 @@ const ItemList = ({ user }) => {
 	}, [storeId])
 
 
-	const handleDelete = async (itemId) => {
-		await itemService.deleteItem(storeId, itemId)
-		setItems(items.filter(item => item._id !== itemId))
-	}
-
-
 	return (
 		<main>
 			<h1>Item List</h1>
@@ -27,26 +21,26 @@ const ItemList = ({ user }) => {
 			{user && (
 				<button onClick={() => navigate(`/stores/${storeId}/items/new`)}>Add New Item</button>
 			)}
-      
+
 			{items.length > 0 ? (
+				
 				items.map(item => (
-					<div key={item._id} className="item-card">
+					<div
+						key={item._id}
+						className="item-card"
+						style={{ cursor: 'pointer' }}
+						onClick={() => navigate(`/stores/${storeId}/items/${item._id}`)}
+					>
 						<h3>{item.name}</h3>
 						<p><strong>Price:</strong> ${item.price}</p>
 						<p>{item.description}</p>
-						{user && (
-							<>
-								<button onClick={() => navigate(`/stores/${storeId}/items/${item._id}/edit`)}>Edit</button>
-								<button onClick={() => handleDelete(item._id)} style={{ marginLeft: '0.5rem', color: 'red' }}>Delete</button>
-							</>
-						)}
 					</div>
 				))
 
 			) : (
 				<p>No items found.</p>
 			)}
-      
+
 		</main>
 	)
 }

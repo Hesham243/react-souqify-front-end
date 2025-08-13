@@ -75,7 +75,7 @@ const App = () => {
         <Route path='/stores' element={<StoreList stores={stores} />} />
         <Route path='/stores/:storeId' element={<StoreDetails user={user} />} />
         <Route path='/stores/:storeId/items' element={<ItemList user={user} />} />
-        <Route path='/stores/:storeId/items/:itemId' element={<ItemDetails />} />
+        <Route path='/stores/:storeId/items/:itemId' element={<ItemDetails user={user} />} />
         {user ? (
           <>
             {/* Protected Routes - only for authenticated users */}
