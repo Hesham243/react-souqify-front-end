@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import * as storeService from '../../services/storeServices'
 import * as itemService from '../../services/itemService.js'
+import ReviewForm from '../ReviewForm/ReviewForm'
 
 
 const ItemDetails = ({ user }) => {
@@ -10,13 +11,13 @@ const ItemDetails = ({ user }) => {
     const navigate = useNavigate()
     const [deleting, setDeleting] = useState(false)
 
+    const fetchItem = async () => {
+        const storeData = await storeService.show(storeId)
+        const foundItem = storeData.items.find(item => item._id === itemId)
+        foundItem.owner = storeData.owner
+        setItem(foundItem)
+    }
     useEffect(() => {
-        const fetchItem = async () => {
-            const storeData = await storeService.show(storeId)
-            const foundItem = storeData.items.find(item => item._id === itemId)
-            foundItem.owner = storeData.owner
-            setItem(foundItem)
-        }
         fetchItem()
     }, [storeId, itemId])
 
@@ -57,20 +58,19 @@ const ItemDetails = ({ user }) => {
             <hr />
             <section>
                 <h2>Reviews</h2>
+                
                 {item.reviews?.length ? (
                 <ul>
-                {item.reviews.map((review) => (
-                    <>
-                        <li key={review._id}>
-                           <p><strong>Author: </strong>{review.author.username}</p>
-                           <strong>Rating:</strong> {review.rating} ★<br />
-                           <p><strong>Review: </strong>{review.text}</p>
-                        </li>
-                        <hr />
-                    </>
+                {item.reviews.map((review, idx) => (
+                    <li key={review._id || review.id || idx}>
+                        {review.author?.username && <p><strong>Author: </strong>{review.author.username}</p>}
+                        <strong>Rating:</strong> {review.rating} ★<br />
+                        <p><strong>Review: </strong>{review.text}</p>
+                    </li>
                 ))}
                 </ul>
                 ): (<p>No reviews yet.</p>)}
+                <ReviewForm onReviewSubmit={fetchItem} />
             </section>
         </main>
     )
