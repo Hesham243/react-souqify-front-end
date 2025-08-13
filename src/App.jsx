@@ -70,6 +70,16 @@ const App = () => {
     navigate(`/stores/${storeId}`)
   }
 
+  const handleDeleteStore = async (storeId) => {
+    try {
+      await storeService.deleteStore(storeId)
+      setStores(stores.filter(store => store._id !== storeId))
+      navigate('/stores')
+    } catch (err) {
+      console.error('Error deleting store:', err)
+    }
+  }
+
   return (
     <>
       <NavBar user={user} handleSignOut={handleSignOut} />
@@ -77,7 +87,7 @@ const App = () => {
         {/* Public Routes */}
         <Route path='/' element={<h1>Hello world!</h1>} />
         <Route path='/stores' element={<StoreList stores={stores} />} />
-        <Route path='/stores/:storeId' element={<StoreDetails user={user} />} />
+        <Route path='/stores/:storeId' element={<StoreDetails user={user} handleDeleteStore={handleDeleteStore} />} />
         <Route path='/stores/:storeId/items' element={<ItemList user={user} />} />
         <Route path='/stores/:storeId/items/:itemId' element={<ItemDetails user={user} />} />
         {user ? (

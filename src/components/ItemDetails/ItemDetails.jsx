@@ -30,7 +30,7 @@ const ItemDetails = ({ user }) => {
         setDeleting(true)
         await itemService.deleteItem(storeId, itemId)
         setDeleting(false);
-        navigate(`/stores/${storeId}/items`)
+        navigate(`/stores/${storeId}`)
     }
 
 
