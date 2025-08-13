@@ -43,7 +43,7 @@ const create = async (storeId, formData) => {
 
 const createReview = async (storeId, itemId, formData) => {
     const token = localStorage.getItem('token')
-    const res = await fetch(`${BASE_URL}/${storeId}/items/${itemId}`, {
+    const res = await fetch(`${BASE_URL}/${storeId}/items/${itemId}/reviews`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
