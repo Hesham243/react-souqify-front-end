@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import * as storeService from '../../services/storeServices'
 import * as itemService from '../../services/itemService.js'
 import ReviewForm from '../ReviewForm/ReviewForm'
@@ -9,6 +9,7 @@ import { Card, Button, Container, Row, Col, Badge } from 'react-bootstrap'
 const ItemDetails = ({ user }) => {
     const { storeId, itemId } = useParams()
     const [item, setItem] = useState(null)
+    const [store, setStore] = useState(null)
     const navigate = useNavigate()
     const [deleting, setDeleting] = useState(false)
 
@@ -17,6 +18,7 @@ const ItemDetails = ({ user }) => {
         const foundItem = storeData.items.find(item => item._id === itemId)
         foundItem.owner = storeData.owner
         setItem(foundItem)
+        setStore(storeData)
     }
     useEffect(() => {
         fetchItem()
@@ -68,9 +70,26 @@ const ItemDetails = ({ user }) => {
                         <div style={{ flex: '1', padding: '2rem' }}>
                             <Card.Body className="p-0">
                                 <div className="d-flex justify-content-between align-items-start mb-3">
-                                    <Card.Title style={{ color: '#ffb347', fontWeight: 700, fontSize: '2rem' }}>
-                                        {item.name}
-                                    </Card.Title>
+                                    <div>
+                                        <Card.Title style={{ color: '#ffb347', fontWeight: 700, fontSize: '2rem', marginBottom: '0.5rem' }}>
+                                            {item.name}
+                                        </Card.Title>
+                                        <Card.Subtitle className="mb-0">
+                                            <span style={{ color: '#adb5bd' }}>Sold by: </span>
+                                            <Link 
+                                                to={`/stores/${storeId}`} 
+                                                style={{ 
+                                                    color: '#ffb347', 
+                                                    textDecoration: 'none',
+                                                    fontWeight: 600
+                                                }}
+                                                onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
+                                                onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+                                            >
+                                                {store?.name}
+                                            </Link>
+                                        </Card.Subtitle>
+                                    </div>
                                     <Badge bg="secondary">{item.category}</Badge>
                                 </div>
                                 <Card.Text className="mb-3" style={{ fontSize: '1.5rem', color: '#28a745', fontWeight: 600 }}>
