@@ -1,6 +1,6 @@
 # 🛍️ Souqify
 
-![Game Screenshot](./assets/screenshot.png)
+![Game Screenshot](/src/assets/screenshot.png)
 
 ## 🕹️ Description
 
