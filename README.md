@@ -63,6 +63,9 @@ This project was developed as part of a **MERN Stack full-stack development requ
 ### Store Page
 ![Store Page](./src/assets/Stores.png)
 
+### Store Details Page
+![Store Items Page](./src/assets/screenshot.png)
+
 ### Item Details & Reviews
 ![Item Details](./src/assets/Item-details.png)
 ![Reviews Section](./src/assets/Reviews.png)
