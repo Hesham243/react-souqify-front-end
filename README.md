@@ -10,7 +10,7 @@ We built Souqify to provide a collaborative, community-driven online shopping ex
 
 ## 🚀 Getting Started
 
-👉 **Play it here:** [https://your-deployment-link.com](https://your-deployment-link.com)
+👉 **Try it here:** [https://react-souqify-front-end.vercel.app/](https://react-souqify-front-end.vercel.app/)
 
 👉 **Planning Materials:**
 - [User Stories](https://trello.com/b/RacBmZJ6/unite-3-project)
@@ -36,7 +36,8 @@ We built Souqify to provide a collaborative, community-driven online shopping ex
 
 ## 📚 Attributions
 
-- [Icons from Font Awesome](https://fontawesome.com/)
+- [Montserrat Font](https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap)
+- **React-Bootstrap** For UI components and styling
 
 ## 🚧 Next Steps
 
