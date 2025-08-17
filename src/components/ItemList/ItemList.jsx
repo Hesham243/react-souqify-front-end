@@ -36,27 +36,16 @@ const ItemList = ({ user, storeOwner }) => {
 								style={{ cursor: 'pointer' }} 
 								onClick={() => navigate(`/stores/${storeId}/items/${item._id}`)}
 							>
-								{item.image && (
-									<div style={{ 
-										height: '150px', 
-										display: 'flex', 
-										alignItems: 'center', 
-										justifyContent: 'center',
-										padding: '10px',
-										background: 'transparent'
-									}}>
-										<img 
-											src={item.image} 
-											alt={item.name} 
-											style={{ 
-												maxHeight: '130px',
-												maxWidth: '100%',
-												objectFit: 'contain',
-												background: 'transparent'
-											}} 
-										/>
-									</div>
-								)}
+								   {item.image && (
+									   <div className="d-flex align-items-center justify-content-center p-2" style={{height: '150px', background: 'transparent'}}>
+										   <img 
+											   src={item.image} 
+											   alt={item.name} 
+											   className="img-responsive"
+											   style={{ maxHeight: '130px', objectFit: 'contain', background: 'transparent' }} 
+										   />
+									   </div>
+								   )}
 								<Card.Body>
 									<Card.Title style={{ color: '#ffb347', fontWeight: 700 }}>{item.name}</Card.Title>
 									<Card.Text>

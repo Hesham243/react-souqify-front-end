@@ -102,23 +102,12 @@ const Landing = () => {
                 onClick={() => navigate(`/stores/${item.storeId}/items/${item._id}`)}
               >
                 {item.image && (
-                  <div style={{ 
-                    height: '150px', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center',
-                    padding: '10px',
-                    background: 'transparent'
-                  }}>
+                  <div className="d-flex align-items-center justify-content-center p-2" style={{height: '150px', background: 'transparent'}}>
                     <img 
                       src={item.image} 
                       alt={item.name} 
-                      style={{ 
-                        maxHeight: '130px',
-                        maxWidth: '100%',
-                        objectFit: 'contain',
-                        background: 'transparent'
-                      }} 
+                      className="img-responsive"
+                      style={{ maxHeight: '130px', objectFit: 'contain', background: 'transparent' }} 
                     />
                   </div>
                 )}

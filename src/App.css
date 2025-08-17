@@ -1,14 +1,24 @@
+/* Sticky navbar only on desktop */
+.sticky-desktop {
+	position: static;
+	top: unset;
+	z-index: 1030;
+}
+
+@media (min-width: 992px) {
+	.sticky-desktop {
+		position: sticky;
+		top: 0;
+		z-index: 1030;
+	}
+}
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
 
 body {
 	background-color: #181a1b;
 	color: #f8f9fa;
 	font-family: 'Montserrat', Arial, sans-serif;
-}
 
-.navbar {
-	font-family: 'Montserrat', Arial, sans-serif;
-	background: linear-gradient(90deg, #232526 0%, #414345 100%);
 	box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
