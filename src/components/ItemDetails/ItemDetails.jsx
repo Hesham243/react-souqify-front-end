@@ -45,75 +45,66 @@ const ItemDetails = ({ user }) => {
         <Container className="py-4">
             <Row className="justify-content-center mb-4">
                 <Col xs={12}>
-                    <Card bg="dark" text="light" className="shadow-sm border-0" style={{ display: 'flex', flexDirection: 'row', minHeight: '300px' }}>
-                        {item.image && (
-                            <div style={{ 
-                                flex: '0 0 300px', 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                justifyContent: 'center', 
-                                padding: '20px',
-                                background: 'transparent'
-                            }}>
-                                <img 
-                                    src={item.image} 
-                                    alt={item.name} 
-                                    style={{ 
-                                        maxHeight: '260px', 
-                                        maxWidth: '280px', 
-                                        objectFit: 'contain',
-                                        borderRadius: '0.5rem'
-                                    }} 
-                                />
-                            </div>
-                        )}
-                        <div style={{ flex: '1', padding: '2rem' }}>
-                            <Card.Body className="p-0">
-                                <div className="d-flex justify-content-between align-items-start mb-3">
-                                    <div>
-                                        <Card.Title style={{ color: '#ffb347', fontWeight: 700, fontSize: '2rem', marginBottom: '0.5rem' }}>
-                                            {item.name}
-                                        </Card.Title>
-                                        <Card.Subtitle className="mb-0">
-                                            <span style={{ color: '#adb5bd' }}>Sold by: </span>
-                                            <Link 
-                                                to={`/stores/${storeId}`} 
-                                                style={{ 
-                                                    color: '#ffb347', 
-                                                    textDecoration: 'none',
-                                                    fontWeight: 600
-                                                }}
-                                                onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
-                                                onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+                    <Card bg="dark" text="light" className="shadow-sm border-0">
+                        <Row className="g-0 flex-column flex-lg-row align-items-stretch">
+                            {item.image && (
+                                <Col xs={12} lg={4} className="d-flex align-items-center justify-content-center" style={{ background: 'transparent', minHeight: '180px' }}>
+                                    <img 
+                                        src={item.image} 
+                                        alt={item.name} 
+                                        className="img-responsive"
+                                        style={{ maxHeight: '260px', maxWidth: '280px', objectFit: 'contain', borderRadius: '0.5rem' }} 
+                                    />
+                                </Col>
+                            )}
+                            <Col xs={12} lg={item.image ? 8 : 12} className="d-flex align-items-center">
+                                <Card.Body className="w-100" style={{ padding: '2rem' }}>
+                                    <div className="d-flex justify-content-between align-items-start mb-3 flex-wrap">
+                                        <div>
+                                            <Card.Title style={{ color: '#ffb347', fontWeight: 700, fontSize: '2rem', marginBottom: '0.5rem' }}>
+                                                {item.name}
+                                            </Card.Title>
+                                            <Card.Subtitle className="mb-0">
+                                                <span style={{ color: '#adb5bd' }}>Sold by: </span>
+                                                <Link 
+                                                    to={`/stores/${storeId}`} 
+                                                    style={{ 
+                                                        color: '#ffb347', 
+                                                        textDecoration: 'none',
+                                                        fontWeight: 600
+                                                    }}
+                                                    onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
+                                                    onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+                                                >
+                                                    {store?.name}
+                                                </Link>
+                                            </Card.Subtitle>
+                                        </div>
+                                        <Badge bg="secondary">{item.category}</Badge>
+                                    </div>
+                                    <Card.Text className="mb-3" style={{ fontSize: '1.5rem', color: '#28a745', fontWeight: 600 }}>
+                                        ${item.price}
+                                    </Card.Text>
+                                    <Card.Text className="mb-4">
+                                        {item.description}
+                                    </Card.Text>
+                                    {user && user._id === item.owner._id && (
+                                        <div className="d-flex gap-2">
+                                            <Button variant="outline-warning" onClick={handleEdit}>
+                                                Edit
+                                            </Button>
+                                            <Button 
+                                                variant="outline-danger" 
+                                                onClick={handleDelete} 
+                                                disabled={deleting}
                                             >
-                                                {store?.name}
-                                            </Link>
-                                        </Card.Subtitle>
-                                    </div>
-                                    <Badge bg="secondary">{item.category}</Badge>
-                                </div>
-                                <Card.Text className="mb-3" style={{ fontSize: '1.5rem', color: '#28a745', fontWeight: 600 }}>
-                                    ${item.price}
-                                </Card.Text>
-                                <Card.Text className="mb-4">
-                                    {item.description}
-                                </Card.Text>
-                                {user && user._id === item.owner._id && (
-                                    <div className="d-flex gap-2">
-                                        <Button variant="outline-warning" onClick={handleEdit}>
-                                            Edit
-                                        </Button>
-                                        <Button 
-                                            variant="outline-danger" 
-                                            onClick={handleDelete} 
-                                            disabled={deleting}
-                                        >
-                                            {deleting ? 'Deleting...' : 'Delete'}
-                                        </Button>
-                                    </div>
-                                )}
-                            </Card.Body>
-                        </div>
+                                                {deleting ? 'Deleting...' : 'Delete'}
+                                            </Button>
+                                        </div>
+                                    )}
+                                </Card.Body>
+                            </Col>
+                        </Row>
                     </Card>
                 </Col>
             </Row>

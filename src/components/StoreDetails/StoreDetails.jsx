@@ -21,28 +21,30 @@ const StoreDetails = ({ user, handleDeleteStore }) => {
   return (
     <Container className="py-4">
       <Row className="justify-content-center mb-4">
-  <Col xs={12}>
-          <Card bg="dark" text="light" className="shadow-sm border-0 flex-row" style={{ minHeight: '220px', display: 'flex', flexDirection: 'row', width: '100%' }}>
-            {store.logo && (
-              <div style={{ flex: '0 0 220px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#232526', borderTopLeftRadius: '0.5rem', borderBottomLeftRadius: '0.5rem' }}>
-                <img src={store.logo} alt={`${store.name} logo`} style={{ maxHeight: '160px', maxWidth: '180px', objectFit: 'contain', borderRadius: '0.5rem' }} />
-              </div>
-            )}
-            <div style={{ flex: '1', padding: '2rem' }}>
-              <Card.Body className="p-0">
-                <Card.Title style={{ color: '#ffb347', fontWeight: 700, fontSize: '2rem' }}>{store.name}</Card.Title>
-                <Card.Text className="mb-2">
-                  <strong>Owner:</strong> {store.owner.username}<br />
-                  <strong>Category:</strong> {store.category}
-                </Card.Text>
-                {user && user._id === store.owner._id && (
-                  <div className="d-flex gap-2 mt-3">
-                    <Button as={Link} to={`/stores/${storeId}/edit`} variant="outline-warning">Edit</Button>
-                    <Button variant="outline-danger" onClick={() => handleDeleteStore(storeId)}>Delete</Button>
-                  </div>
-                )}
-              </Card.Body>
-            </div>
+        <Col xs={12}>
+          <Card bg="dark" text="light" className="shadow-sm border-0">
+            <Row className="g-0 flex-column flex-lg-row align-items-stretch">
+              {store.logo && (
+                <Col xs={12} lg={4} className="d-flex align-items-center justify-content-center" style={{ background: '#232526', borderTopLeftRadius: '0.5rem', borderBottomLeftRadius: '0.5rem', minHeight: '180px' }}>
+                  <img src={store.logo} alt={`${store.name} logo`} className="img-responsive" style={{ maxHeight: '160px', maxWidth: '180px', objectFit: 'contain', borderRadius: '0.5rem' }} />
+                </Col>
+              )}
+              <Col xs={12} lg={store.logo ? 8 : 12} className="d-flex align-items-center">
+                <Card.Body className="w-100" style={{ padding: '2rem' }}>
+                  <Card.Title style={{ color: '#ffb347', fontWeight: 700, fontSize: '2rem' }}>{store.name}</Card.Title>
+                  <Card.Text className="mb-2">
+                    <strong>Owner:</strong> {store.owner.username}<br />
+                    <strong>Category:</strong> {store.category}
+                  </Card.Text>
+                  {user && user._id === store.owner._id && (
+                    <div className="d-flex gap-2 mt-3">
+                      <Button as={Link} to={`/stores/${storeId}/edit`} variant="outline-warning">Edit</Button>
+                      <Button variant="outline-danger" onClick={() => handleDeleteStore(storeId)}>Delete</Button>
+                    </div>
+                  )}
+                </Card.Body>
+              </Col>
+            </Row>
           </Card>
         </Col>
       </Row>

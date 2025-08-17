@@ -12,7 +12,7 @@ const StoreList = (props) => {
             <Card bg="dark" text="light" className="h-100 shadow-sm border-0">
               <Link to={`/stores/${store._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 {store.logo && (
-                  <Card.Img variant="top" src={store.logo} alt={`${store.name} logo`} style={{ maxHeight: '120px', objectFit: 'contain', background: '#232526' }} />
+                  <Card.Img variant="top" src={store.logo} alt={`${store.name} logo`} className="img-responsive" style={{ maxHeight: '120px', objectFit: 'contain', background: '#232526' }} />
                 )}
                 <Card.Body>
                   <Card.Title style={{ color: '#ffb347', fontWeight: 700 }}>{store.name}</Card.Title>
